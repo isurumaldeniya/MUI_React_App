@@ -2,7 +2,6 @@ import { DataGrid, GridRenderCellParams } from '@mui/x-data-grid';
 import { contactData } from '../../Data/ContactData';
 import { Theme, useTheme } from '@mui/material';
 
-
 const columns = (theme: Theme) => [
   {
     field: 'name',
@@ -25,7 +24,11 @@ const columns = (theme: Theme) => [
     headerName: 'Skills',
     minWidth: 150,
     renderCell: (cellValues: GridRenderCellParams<string>) => {
-      return <div style={{color: theme.palette.primary.main}}>{cellValues.value ? cellValues.value[0] : ''}</div>;
+      return (
+        <div style={{ color: theme.palette.primary.main }}>
+          {cellValues.value ? cellValues.value[0] : ''}
+        </div>
+      );
     },
   },
   {
@@ -52,14 +55,16 @@ const ContactDataGrid = () => {
   const theme = useTheme();
 
   return (
+    <div style={{ height: '100vh', width: '100%' }}>
       <DataGrid
-      autoHeight
+        autoHeight
         columns={columns(theme)}
         rows={rows()}
         pageSie={5}
         headerHeight={60}
         rowHeight={120}
-      ></DataGrid>
+      />
+    </div>
   );
 };
 
